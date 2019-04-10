@@ -9,5 +9,7 @@ RUN apt-get update \
 
 EXPOSE 80
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
-CMD ["-h"]
+ENV DATABASE_IP=10.0.9.4
+ENV DATABASE_NAME=pakitodb
+
+WORKDIR /var/www/html
