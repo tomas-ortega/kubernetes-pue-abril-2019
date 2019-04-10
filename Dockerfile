@@ -2,6 +2,8 @@ FROM ubuntu:18.04
 
 LABEL MAINTAINER="Tomy"
 
+RUN useradd nginx
+
 RUN apt-get update \
     && apt-get install nginx -y \
     && echo '<marquee>Hello From Pue!!!</marquee>' \
@@ -9,7 +11,10 @@ RUN apt-get update \
 
 EXPOSE 80
 
-ENV DATABASE_IP=10.0.9.4
-ENV DATABASE_NAME=pakitodb
+COPY index.html /var/www/html
 
 WORKDIR /var/www/html
+
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
+
+#USER nginx
