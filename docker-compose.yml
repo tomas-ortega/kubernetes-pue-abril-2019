@@ -1,0 +1,12 @@
+version: '3.0'
+
+services:
+  nginx:
+    image: nginx
+    ports:
+      - "9595:80"
+
+  database:
+    image: mysql:5.6
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345
