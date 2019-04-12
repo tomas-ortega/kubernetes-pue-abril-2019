@@ -1,0 +1,12 @@
+#Cabecera de definición
+apiVersion: v1
+kind: Pod
+#Metadatos
+metadata:
+  name: nginx
+spec:
+  containers:
+    - name: pue-nginx
+      image: nginx:latest
+      ports:
+        - containerPort: 80

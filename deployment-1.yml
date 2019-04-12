@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment1
+  namespace: region-eu
+  labels:
+    customer: A547321
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      customer-app: frontends
+  template:
+    metadata:
+      labels:
+        customer-app: frontends
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.7.9
+          ports:
+            - containerPort: 80

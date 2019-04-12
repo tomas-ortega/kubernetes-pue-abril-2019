@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: region-us
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment1
+  namespace: region-us
+  labels:
+    customer: A547321
+spec:
+  replicas: 5
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      customer-app: frontends
+  template:
+    metadata:
+      labels:
+        customer-app: frontends
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
